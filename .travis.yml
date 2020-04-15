@@ -9,7 +9,7 @@ python:
 
 # command to install dependencies
 install:
-  - pip install --user poetry
+  - pip install poetry
   - poetry install
 
 # command to run tests
