@@ -22,3 +22,8 @@ To install / update dependencies:
 To build:
 
     poetry build
+
+
+## Continuous Integration
+
+TravisCI
