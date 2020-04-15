@@ -26,4 +26,8 @@ To build:
 
 ## Continuous Integration
 
-TravisCI
+TravisCI will be used for CI.
+
+Create a travis.yml file.
+
+Then: [https://travis-ci.com/github/MrMimic/test_repo](https://travis-ci.com/github/MrMimic/test_repo)
