@@ -1,34 +1,161 @@
 <!DOCTYPE html>
 
-<html>
+<html lang="en">
 
     <head>
+        <title>Application example</title>
+
+        <meta charset="utf-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+
         <link rel="stylesheet" href="static/style.css">
+        <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
+
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+        <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
         <script src="https://cdn.plot.ly/plotly-latest.min.js"></script>
         <script src="https://cdnjs.cloudflare.com/ajax/libs/d3/3.5.6/d3.min.js"></script>
     </head>
 
     <body>
 
-        <div class="header">
-            <h2>
-                Demo applet C19
-            </h2>
+        <div class="container">
+            <h2>Demo applet C19</h2>
+
+            <p>Pellentesque habitant morbi tristique senectus et netus et malesuada fames ac turpis egestas. Vestibulum tortor quam,
+                feugiat vitae, ultricies eget, tempor sit amet, ante. Donec eu libero sit amet quam egestas semper. Aenean ultricies
+                mi vitae est. Mauris placerat eleifend leo.
+            </p>
+
+            <ul class="nav nav-tabs">
+                <li class="active"><a data-toggle="tab" href="#home">Application</a></li>
+                <li><a data-toggle="tab" href="#about">About</a></li>
+                <li><a data-toggle="tab" href="#tech">Technical details</a></li>
+                <li><a data-toggle="tab" href="#links">Links</a></li>
+            </ul>
+
+            <div class="tab-content">
+
+                <!-- Tab 1: applet -->
+                <div id="home" class="tab-pane fade in active">
+                    <h3>Application</h3>       
+                    <div class="user-interraction">
+
+                        <!-- User query -->
+                        <div class="user-query">
+                            <form method="POST">
+                                <div class="search-box">
+                                    <input name="user_input" autocomplete="off">
+                                </div>
+                                <div class="search-button">
+                                    <input type="submit">
+                                </div>
+                            </form>
+                        </div>
+
+                        <div class="parameters-row">
+                            <div class="parameters-col-title">
+                                <p>Minimum number of sentences</p>
+                            </div>
+                            <div class="parameters-col-slider">
+                                <input type="range" min="1" max="100" value="20" class="slider" id="n_sentence">
+                            </div>
+                        </div>
+
+                        <div class="parameters-row">
+                            <div class="parameters-col-title">
+                                <p>Similarity threshold</p>
+                            </div>
+                            <div class="parameters-col-slider">
+                                <input type="range" min="1" max="100" value="20" class="slider" id="sim_threshold">
+                            </div>
+                        </div>
+
+                        <div class="parameters-row">
+                            <div class="parameters-col-title">
+                                <p>Number of clusters</p>
+                            </div>
+                            <div class="parameters-col-slider">
+                                <input type="range" min="1" max="100" value="20" class="slider" id="number_cluster">
+                            </div>
+                        </div>
+
+                        <div class="parameters-row">
+                            <div class="parameters-col-title">
+                                <p>K closest sentences</p>
+                            </div>
+                            <div class="parameters-col-slider">
+                                <input type="range" min="1" max="100" value="20" class="slider" id="k_closest_senteces">
+                            </div>
+                        </div>
+
+                        <div class="parameters-row">
+                            <div class="parameters-col-title">
+                                <p>Minimal features per cluster</p>
+                            </div>
+                            <div class="parameters-col-slider">
+                                <input type="range" min="1" max="100" value="20" class="slider" id="feature_per_cluster">
+                            </div>
+                        </div>
+                
+                    </div>
+
+
+
+                            
+                    <div class="scatter-plot" id="scatter">
+                        <script>
+                            var graphs = {{ plot | safe }};
+                            Plotly.plot('scatter', graphs, {});
+                        </script>
+                    </div>
+
+                </div>
+
+                <div id="about" class="tab-pane fade">
+                    <h3>About</h3>
+                    <p>{{ about }}</p>
+
+                    <dl>
+                        <dt>Definition list</dt>
+                        <dd>Consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna
+                            aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea
+                            commodo consequat.</dd>
+                        <dt>Lorem ipsum dolor sit amet</dt>
+                        <dd>Consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna
+                            aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea
+                            commodo consequat.</dd>
+                    </dl>                  
+                </div>
+
+                <div id="tech" class="tab-pane fade">
+                    <h3>Technical details</h3>
+                    <p>Pellentesque habitant morbi tristique senectus et netus et malesuada fames ac turpis egestas. Vestibulum tortor quam,
+                        feugiat vitae, ultricies eget, tempor sit amet, ante. Donec eu libero sit amet quam egestas semper. Aenean ultricies
+                        mi vitae est. Mauris placerat eleifend leo. Quisque sit amet est et sapien ullamcorper pharetra. Vestibulum erat
+                        wisi, condimentum sed, commodo vitae, ornare sit amet, wisi. Aenean fermentum, elit eget tincidunt condimentum, eros
+                        ipsum rutrum orci, sagittis tempus lacus enim ac dui. Donec non enim in turpis pulvinar facilisis. Ut felis.
+                        Praesent dapibus, neque id cursus faucibus, tortor neque egestas augue, eu vulputate magna eros eu erat. Aliquam
+                        erat volutpat. Nam dui mi, tincidunt quis, accumsan porttitor, facilisis luctus, metus
+                    </p>
+                </div>
+
+                <div id="links" class="tab-pane fade">
+                    <h3>Links</h3>
+                    <p>Pellentesque habitant morbi tristique senectus et netus et malesuada fames ac turpis egestas. Vestibulum tortor quam,
+                        feugiat vitae, ultricies eget, tempor sit amet, ante. Donec eu libero sit amet quam egestas semper. Aenean ultricies
+                        mi vitae est. Mauris placerat eleifend leo. Quisque sit amet est et sapien ullamcorper pharetra. Vestibulum erat
+                        wisi, condimentum sed, commodo vitae, ornare sit amet, wisi. Aenean fermentum, elit eget tincidunt condimentum, eros
+                        ipsum rutrum orci, sagittis tempus lacus enim ac dui. Donec non enim in turpis pulvinar facilisis. Ut felis.
+                        Praesent dapibus, neque id cursus faucibus, tortor neque egestas augue, eu vulputate magna eros eu erat. Aliquam
+                        erat volutpat. Nam dui mi, tincidunt quis, accumsan porttitor, facilisis luctus, metus</p>
+                </div>
+
+            </div>
         </div>
 
-        <div>
-            <form method="POST">
-                <input name="user_input">
-                <input type="submit">
-            </form>
-        </div>
 
-        <div class="chart" id="bargraph">
-            <script>
-                var graphs = {{ plot | safe }};
-                Plotly.plot('bargraph', graphs, {});
-            </script>
-        </div>
+
 
     </body>
 

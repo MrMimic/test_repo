@@ -1,3 +1,74 @@
 h2 {
     color: rgb(27, 27, 141);
 }
+
+
+
+/* LEFT PANEL */
+
+.user-interraction {
+    display: table;         
+    width: auto;         
+    background-color: #eee;         
+    border: 1px solid #666666;         
+    border-spacing: 10px;
+    float: left;
+    width: 20%;
+    padding-right: 20px;
+}
+
+.user-query {
+    width: 100%;
+}
+
+.search-box {
+    width: 75%;
+    float: left;
+    margin-left: 3px;
+}
+
+.search-button {
+    width: 20%;
+    float: right;
+    margin-right: 3px;
+}
+
+.parameters-row {
+    display: table-row;
+    width: 95%;
+    /* clear: both; */
+}
+
+.parameters-col-title {
+    display: table-column;
+    float: left;
+    background-color: #ccc;
+    width: 30%;
+    font-size: 8pt;
+}
+
+.parameters-col-slider {
+    display: table-column;
+    float: right;
+    background-color: #ccc;
+    margin-right: 0;
+    width: 65%;
+}
+
+.slider {
+    width: 90%;
+}
+
+/* RIGHT PANEL */
+
+.scatter-plot {
+    width: 80%;
+    float: right;
+    padding-left: 10;
+}
+
+/* PLOTLY */
+
+.modebar{
+    display: none !important;
+}
