@@ -40,82 +40,73 @@
                 <div id="home" class="tab-pane fade in active">
                     <h3>Application</h3>       
                     <div class="user-interraction">
+                        <form method="POST">
+                            <!-- User query -->
+                            <div class="user-query">
+                                    <div class="search-box">
+                                        <input type="text" value="" name="user_input" autocomplete="off">
+                                    </div>
+                                    <div class="search-button">
+                                        <input type="submit">
+                                    </div>
 
-                        <!-- User query -->
-                        <div class="user-query">
-                            <form method="POST">
-                                <div class="search-box">
-                                    <input name="user_input" autocomplete="off">
+                            </div>
+                            <!-- Parameters table -->
+                            <div class="parameters-row">
+                                <div class="parameters-col-title">
+                                    <p>Minimum number of sentences</p>
                                 </div>
-                                <div class="search-button">
-                                    <input type="submit">
+                                <div class="parameters-col-slider">
+                                    <input type="range" min="1" max="100" value="20" class="slider" name="n_sentence">
                                 </div>
-                            </form>
-                        </div>
-
-                        <div class="parameters-row">
-                            <div class="parameters-col-title">
-                                <p>Minimum number of sentences</p>
                             </div>
-                            <div class="parameters-col-slider">
-                                <input type="range" min="1" max="100" value="20" class="slider" id="n_sentence">
+                            <div class="parameters-row">
+                                <div class="parameters-col-title">
+                                    <p>Similarity threshold</p>
+                                </div>
+                                <div class="parameters-col-slider">
+                                    <input type="range" min="1" max="100" value="20" class="slider" name="sim_threshold">
+                                </div>
                             </div>
-                        </div>
-
-                        <div class="parameters-row">
-                            <div class="parameters-col-title">
-                                <p>Similarity threshold</p>
+                            <div class="parameters-row">
+                                <div class="parameters-col-title">
+                                    <p>Number of clusters</p>
+                                </div>
+                                <div class="parameters-col-slider">
+                                    <input type="range" min="1" max="100" value="20" class="slider" name="number_cluster">
+                                </div>
                             </div>
-                            <div class="parameters-col-slider">
-                                <input type="range" min="1" max="100" value="20" class="slider" id="sim_threshold">
+                            <div class="parameters-row">
+                                <div class="parameters-col-title">
+                                    <p>K closest sentences</p>
+                                </div>
+                                <div class="parameters-col-slider">
+                                    <input type="range" min="1" max="100" value="20" class="slider" name="k_closest_senteces">
+                                </div>
                             </div>
-                        </div>
-
-                        <div class="parameters-row">
-                            <div class="parameters-col-title">
-                                <p>Number of clusters</p>
+                            <div class="parameters-row">
+                                <div class="parameters-col-title">
+                                    <p>Minimal features per cluster</p>
+                                </div>
+                                <div class="parameters-col-slider">
+                                    <input type="range" min="1" max="100" value="20" class="slider" name="feature_per_cluster">
+                                </div>
                             </div>
-                            <div class="parameters-col-slider">
-                                <input type="range" min="1" max="100" value="20" class="slider" id="number_cluster">
-                            </div>
-                        </div>
-
-                        <div class="parameters-row">
-                            <div class="parameters-col-title">
-                                <p>K closest sentences</p>
-                            </div>
-                            <div class="parameters-col-slider">
-                                <input type="range" min="1" max="100" value="20" class="slider" id="k_closest_senteces">
-                            </div>
-                        </div>
-
-                        <div class="parameters-row">
-                            <div class="parameters-col-title">
-                                <p>Minimal features per cluster</p>
-                            </div>
-                            <div class="parameters-col-slider">
-                                <input type="range" min="1" max="100" value="20" class="slider" id="feature_per_cluster">
-                            </div>
-                        </div>
-                
+                        </form>
                     </div>
-
-
-
-                            
+                    <!-- Plot -->
                     <div class="scatter-plot" id="scatter">
                         <script>
                             var graphs = {{ plot | safe }};
                             Plotly.plot('scatter', graphs, {});
                         </script>
                     </div>
-
                 </div>
 
+                <!-- Tab 2: about -->
                 <div id="about" class="tab-pane fade">
                     <h3>About</h3>
                     <p>{{ about }}</p>
-
                     <dl>
                         <dt>Definition list</dt>
                         <dd>Consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna
@@ -125,9 +116,10 @@
                         <dd>Consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna
                             aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea
                             commodo consequat.</dd>
-                    </dl>                  
-                </div>
-
+                        </dl>                  
+                    </div>
+                    
+                <!-- Tab 3: tech details -->
                 <div id="tech" class="tab-pane fade">
                     <h3>Technical details</h3>
                     <p>Pellentesque habitant morbi tristique senectus et netus et malesuada fames ac turpis egestas. Vestibulum tortor quam,
@@ -140,6 +132,7 @@
                     </p>
                 </div>
 
+                <!-- Tab 4: links -->
                 <div id="links" class="tab-pane fade">
                     <h3>Links</h3>
                     <p>Pellentesque habitant morbi tristique senectus et netus et malesuada fames ac turpis egestas. Vestibulum tortor quam,
@@ -153,10 +146,5 @@
 
             </div>
         </div>
-
-
-
-
     </body>
-
 </html>

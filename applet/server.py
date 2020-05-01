@@ -13,7 +13,29 @@ def get_about():
     return about
 
 
+# def compute_query_df():
+#     " Method to update the DF "
+#     print(query)
+#     # Get K closest for each
+#     closest_sentences_df = query_matching.get_k_closest_sentences(
+#         query=query,
+#         all_sentences=all_db_sentences_original,
+#         embedding_model=embedding_model,
+#         minimal_number_of_sentences=params.query.
+#         minimum_sentences_kept,
+#         similarity_threshold=params.query.
+#         cosine_similarity_threshold)
+#     # Clusterise them
+#     closest_sentences_df = clusterise_sentences.perform_kmean(
+#         k_closest_sentences_df=closest_sentences_df,
+#         number_of_clusters=params.query.number_of_clusters,
+#         k_min=params.query.k_min,
+#         k_max=params.query.k_max,
+#         min_feature_per_cluster=params.query.
+#         min_feature_per_cluster)
+
 def create_plot(value):
+    " Method to plot the DF "
     try:
         N = int(value)
     except ValueError:
@@ -42,11 +64,29 @@ def create_plot(value):
 
 
 @app.route('/', methods=['GET', 'POST'])
-def updated_index():
-    arg_1 = request.form['user_input']
-    bar = create_plot(arg_1)
+def process_user_query():
+    # Get params
+    print(list(request.form.keys()))
+    query = request.form['user_input']
+    n_sentences = request.form['n_sentence']
+    sim_threshold = request.form['sim_threshold']
+    number_cluster = request.form['number_cluster']
+    k_closest_senteces = request.form['k_closest_senteces']
+    feature_per_cluster = request.form['feature_per_cluster']
+
+    # Compute sentences DF
+    # closest_sentences_df = compute_query_df(args)
+
+    # Create the plot
+    plot = create_plot(query)
+
+    # Get other pages
     about = get_about()
-    return render_template('index.html', plot=bar, about=about)
+
+    # Return render
+    index_template = render_template('index.html', plot=plot, about=about)
+
+    return index_template
 
 
 # @app.route('/')
