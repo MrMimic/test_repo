@@ -1,0 +1,14 @@
+
+/* STANDARD HTML */
+
+h2 {
+    color: rgb(27, 27, 141);
+}
+
+
+/* PLOTLY */
+
+.modebar {
+    /* Remove plotly transparent control bar */
+    display: none !important;
+}

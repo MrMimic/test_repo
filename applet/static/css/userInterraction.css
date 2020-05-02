@@ -1,16 +1,8 @@
-h2 {
-    color: rgb(27, 27, 141);
-}
-
-
-
-/* LEFT PANEL */
-
 .user-interraction {
-    display: table;         
-    width: auto;         
-    background-color: #eee;         
-    border: 1px solid #666666;         
+    display: table;
+    width: auto;
+    background-color: #eee;
+    border: 1px solid #666666;
     border-spacing: 10px;
     float: left;
     width: 20%;
@@ -34,41 +26,38 @@ h2 {
 }
 
 .parameters-row {
-    display: table-row;
-    width: 95%;
-    /* clear: both; */
+    width: 100%;
+    text-align: center;
+    display: flex;
+    flex-direction: row;
+    flex-wrap: nowrap;
 }
 
 .parameters-col-title {
     display: table-column;
     float: left;
     background-color: #ccc;
-    width: 30%;
+    width: 50px;
     font-size: 8pt;
 }
 
 .parameters-col-slider {
-    display: table-column;
-    float: right;
+    display: inline-block table-column;
+    margin: 0 auto;
     background-color: #ccc;
-    margin-right: 0;
-    width: 65%;
+    width: 100px;
+}
+
+.parameter-col-value {
+    width: 10px;
+    float: right;
 }
 
 .slider {
     width: 90%;
 }
 
-/* RIGHT PANEL */
-
-.scatter-plot {
-    width: 80%;
-    float: right;
-    padding-left: 10;
-}
-
-/* PLOTLY */
-
-.modebar{
-    display: none !important;
+.slider:hover {
+    /* Fully shown on mouse-over */
+    opacity: 1;
 }

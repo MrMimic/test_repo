@@ -8,13 +8,17 @@
         <meta charset="utf-8">
         <meta name="viewport" content="width=device-width, initial-scale=1">
 
-        <link rel="stylesheet" href="static/style.css">
+        <link rel="stylesheet" href="static/css/generalStyle.css">
+        <link rel="stylesheet" href="static/css/userInterraction.css">
+        <link rel="stylesheet" href="static/css/graphPanel.css">
         <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
 
         <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
         <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
         <script src="https://cdn.plot.ly/plotly-latest.min.js"></script>
         <script src="https://cdnjs.cloudflare.com/ajax/libs/d3/3.5.6/d3.min.js"></script>
+
+        <script src="/static/js/sliderBubble.js"></script>
     </head>
 
     <body>
@@ -22,7 +26,8 @@
         <div class="container">
             <h2>Demo applet C19</h2>
 
-            <p>Pellentesque habitant morbi tristique senectus et netus et malesuada fames ac turpis egestas. Vestibulum tortor quam,
+            <p>
+                Pellentesque habitant morbi tristique senectus et netus et malesuada fames ac turpis egestas. Vestibulum tortor quam,
                 feugiat vitae, ultricies eget, tempor sit amet, ante. Donec eu libero sit amet quam egestas semper. Aenean ultricies
                 mi vitae est. Mauris placerat eleifend leo.
             </p>
@@ -38,13 +43,13 @@
 
                 <!-- Tab 1: applet -->
                 <div id="home" class="tab-pane fade in active">
-                    <h3>Application</h3>       
+                    <h3>Application</h3>
                     <div class="user-interraction">
                         <form method="POST">
                             <!-- User query -->
                             <div class="user-query">
                                     <div class="search-box">
-                                        <input type="text" value="" name="user_input" autocomplete="off">
+                                        <input type="text" value={{ query_last_value }} name="user_query" autocomplete="off">
                                     </div>
                                     <div class="search-button">
                                         <input type="submit">
@@ -54,18 +59,24 @@
                             <!-- Parameters table -->
                             <div class="parameters-row">
                                 <div class="parameters-col-title">
-                                    <p>Minimum number of sentences</p>
+                                    <p>Similarity threshold</p>
                                 </div>
                                 <div class="parameters-col-slider">
-                                    <input type="range" min="1" max="100" value="20" class="slider" name="n_sentence">
+                                    <input type="range" min="0" max="1" step="0.01" value={{ sim_threshold_last_value }} class="slider" name="sim_threshold" onchange="updateTextInput(this.value, this.name);">
+                                </div>
+                                <div class="parameter-col-value">
+                                    <input type="text" id="sim_threshold_value" value={{ sim_threshold_last_value }}>
                                 </div>
                             </div>
                             <div class="parameters-row">
                                 <div class="parameters-col-title">
-                                    <p>Similarity threshold</p>
+                                    <p>Minimum number of sentences</p>
                                 </div>
                                 <div class="parameters-col-slider">
-                                    <input type="range" min="1" max="100" value="20" class="slider" name="sim_threshold">
+                                    <input type="range" min="100" max="1000" value={{ n_sentence_last_value }} class="slider" name="n_sentence" onchange="updateTextInput(this.value, this.name);">
+                                </div>
+                                <div class="parameter-col-value">
+                                    <input type="text" id="n_sentence_value" value={{ n_sentence_last_value }}>
                                 </div>
                             </div>
                             <div class="parameters-row">
@@ -73,15 +84,10 @@
                                     <p>Number of clusters</p>
                                 </div>
                                 <div class="parameters-col-slider">
-                                    <input type="range" min="1" max="100" value="20" class="slider" name="number_cluster">
+                                    <input type="range" min="0" max="10" value={{ number_cluster_last_value }} class="slider" name="number_cluster" onchange="updateTextInput(this.value, this.name);">
                                 </div>
-                            </div>
-                            <div class="parameters-row">
-                                <div class="parameters-col-title">
-                                    <p>K closest sentences</p>
-                                </div>
-                                <div class="parameters-col-slider">
-                                    <input type="range" min="1" max="100" value="20" class="slider" name="k_closest_senteces">
+                                <div class="parameter-col-value">
+                                    <input type="text" id="number_cluster_value" value={{ number_cluster_last_value }}>
                                 </div>
                             </div>
                             <div class="parameters-row">
@@ -89,7 +95,10 @@
                                     <p>Minimal features per cluster</p>
                                 </div>
                                 <div class="parameters-col-slider">
-                                    <input type="range" min="1" max="100" value="20" class="slider" name="feature_per_cluster">
+                                    <input type="range" min="1" max="100" value={{ feature_per_cluster_last_value }} class="slider" name="feature_per_cluster" onchange="updateTextInput(this.value, this.name);">
+                                </div>
+                                <div class="parameter-col-value">
+                                    <input type="text" id="feature_per_cluster_value" value={{ feature_per_cluster_last_value }}>
                                 </div>
                             </div>
                         </form>
@@ -116,12 +125,12 @@
                         <dd>Consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna
                             aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea
                             commodo consequat.</dd>
-                        </dl>                  
+                        </dl>
                     </div>
-                    
+
                 <!-- Tab 3: tech details -->
                 <div id="tech" class="tab-pane fade">
-                    <h3>Technical details</h3>
+                    <h3>How doest it work</h3>
                     <p>Pellentesque habitant morbi tristique senectus et netus et malesuada fames ac turpis egestas. Vestibulum tortor quam,
                         feugiat vitae, ultricies eget, tempor sit amet, ante. Donec eu libero sit amet quam egestas semper. Aenean ultricies
                         mi vitae est. Mauris placerat eleifend leo. Quisque sit amet est et sapien ullamcorper pharetra. Vestibulum erat
