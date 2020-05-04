@@ -1,30 +1,40 @@
 .user-interraction {
     display: table;
-    width: auto;
     background-color: #eee;
     border: 1px solid #666666;
     border-spacing: 10px;
     float: left;
-    width: 20%;
+    width: 35%;
     padding-right: 20px;
+    margin-top: 95px;
 }
 
+
+/* SEARCH BOX */
 .user-query {
     width: 100%;
 }
 
 .search-box {
-    width: 75%;
+    width: 90%;
     float: left;
     margin-left: 3px;
 }
 
 .search-button {
-    width: 20%;
+    width: 10%;
     float: right;
     margin-right: 3px;
 }
 
+/* OUTPUT MESSAGE */
+.output-message {
+    color: red;
+    padding-top: 40px;
+}
+
+
+/* PARAMETERS  */
 .parameters-row {
     width: 100%;
     text-align: center;
@@ -37,7 +47,7 @@
     display: table-column;
     float: left;
     background-color: #ccc;
-    width: 50px;
+    width: 20%;
     font-size: 8pt;
 }
 
@@ -45,12 +55,14 @@
     display: inline-block table-column;
     margin: 0 auto;
     background-color: #ccc;
-    width: 100px;
+    width: 50%;
 }
 
 .parameter-col-value {
-    width: 10px;
+    display: table-column;
+    width: 20%;
     float: right;
+    margin: 0 auto;
 }
 
 .slider {

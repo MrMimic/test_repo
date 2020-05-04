@@ -43,62 +43,64 @@
 
                 <!-- Tab 1: applet -->
                 <div id="home" class="tab-pane fade in active">
-                    <h3>Application</h3>
                     <div class="user-interraction">
                         <form method="POST">
                             <!-- User query -->
                             <div class="user-query">
                                     <div class="search-box">
-                                        <input type="text" value={{ query_last_value }} name="user_query" autocomplete="off">
+                                        <input type="text" size="38" value="{{ query_last_value }}" name="user_query" autocomplete="off">
                                     </div>
                                     <div class="search-button">
                                         <input type="submit">
                                     </div>
-
+                            </div>
+                            <!-- Output message -->
+                            <div class="output-message">
+                                <p>{{ output_message }}</p>
                             </div>
                             <!-- Parameters table -->
                             <div class="parameters-row">
                                 <div class="parameters-col-title">
-                                    <p>Similarity threshold</p>
+                                    <label for="id_sim_threshold">Similarity threshold</label>
                                 </div>
                                 <div class="parameters-col-slider">
-                                    <input type="range" min="0" max="1" step="0.01" value={{ sim_threshold_last_value }} class="slider" name="sim_threshold" onchange="updateTextInput(this.value, this.name);">
+                                    <input type="range" min="0" max="1" step="0.01" id="id_sim_threshold" value={{ sim_threshold_last_value }} class="slider" name="sim_threshold" onchange="updateTextInput(this.value, this.name);">
                                 </div>
                                 <div class="parameter-col-value">
-                                    <input type="text" id="sim_threshold_value" value={{ sim_threshold_last_value }}>
+                                    <input type="text" id="sim_threshold_value" maxlength="4" size="4" value={{ sim_threshold_last_value }}>
                                 </div>
                             </div>
                             <div class="parameters-row">
                                 <div class="parameters-col-title">
-                                    <p>Minimum number of sentences</p>
+                                    <label for="id_n_sentence">Minimum sentences</label>
                                 </div>
                                 <div class="parameters-col-slider">
-                                    <input type="range" min="100" max="1000" value={{ n_sentence_last_value }} class="slider" name="n_sentence" onchange="updateTextInput(this.value, this.name);">
+                                    <input type="range" min="1" max="1000" step="10" id="id_n_sentence" value={{ n_sentence_last_value }} class="slider" name="n_sentence" onchange="updateTextInput(this.value, this.name);">
                                 </div>
                                 <div class="parameter-col-value">
-                                    <input type="text" id="n_sentence_value" value={{ n_sentence_last_value }}>
+                                    <input type="text" id="n_sentence_value" maxlength="4" size="4" value={{ n_sentence_last_value }}>
                                 </div>
                             </div>
                             <div class="parameters-row">
                                 <div class="parameters-col-title">
-                                    <p>Number of clusters</p>
+                                    <label for="id_number_cluster">Clusters number</label>
                                 </div>
                                 <div class="parameters-col-slider">
-                                    <input type="range" min="0" max="10" value={{ number_cluster_last_value }} class="slider" name="number_cluster" onchange="updateTextInput(this.value, this.name);">
+                                    <input type="range" min="0" max="10" step="1" id="id_number_cluster" value={{ number_cluster_last_value }} class="slider" name="number_cluster" onchange="updateTextInput(this.value, this.name);">
                                 </div>
                                 <div class="parameter-col-value">
-                                    <input type="text" id="number_cluster_value" value={{ number_cluster_last_value }}>
+                                    <input type="text" id="number_cluster_value" maxlength="2" size="4" value={{ number_cluster_last_value }}>
                                 </div>
                             </div>
                             <div class="parameters-row">
                                 <div class="parameters-col-title">
-                                    <p>Minimal features per cluster</p>
+                                    <label for="id_number_cluster">Min features / cluster</label>
                                 </div>
                                 <div class="parameters-col-slider">
-                                    <input type="range" min="1" max="100" value={{ feature_per_cluster_last_value }} class="slider" name="feature_per_cluster" onchange="updateTextInput(this.value, this.name);">
+                                    <input type="range" min="1" max="100" step="1" id="id_feature_per_cluster" value={{ feature_per_cluster_last_value }} class="slider" name="feature_per_cluster" onchange="updateTextInput(this.value, this.name);">
                                 </div>
                                 <div class="parameter-col-value">
-                                    <input type="text" id="feature_per_cluster_value" value={{ feature_per_cluster_last_value }}>
+                                    <input type="text" id="feature_per_cluster_value" maxlength="3" size="4" value={{ feature_per_cluster_last_value }}>
                                 </div>
                             </div>
                         </form>
@@ -109,6 +111,16 @@
                             var graphs = {{ plot | safe }};
                             Plotly.plot('scatter', graphs, {});
                         </script>
+                    </div>
+                    <div class="text-output" id="text-output-panel">
+                        <h2>Text output ...</h2>
+                        {% for article in text_output %}
+                        <div>
+                            <h4>{{ article.number }}</h4>
+                            <p><b>{{ article.title }}</b></p>
+                            <p>{{ article.abstract }}</p>
+                        </div>
+                        {% endfor %}
                     </div>
                 </div>
 

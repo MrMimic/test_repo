@@ -1,5 +1,10 @@
 .scatter-plot {
-    width: 80%;
+    width: 65%;
     float: right;
-    padding-left: 10;
+    padding-left: 0;
+}
+
+.text-output {
+    padding-top: 450px;
+    width: 100%;
 }
